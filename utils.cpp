@@ -1,15 +1,20 @@
 #include<iostream>
 #include<vector>
+#include<string>
+#include<fstream>
 #include"./utils.h"
 
 using namespace std;
 
-void printUsage(){
-		cout << "usage" << endl;
-}
-
-void printTmuxWorkspaces(){
-		cout << "tmux workspaces" << endl;
+void printFile(string fileName){
+		ifstream file(fileName.c_str());
+		if (!file) {
+				cerr << "Invalid file name: `" << fileName << "`\n";
+				exit(1);
+		}
+		string line;
+		while (getline(file >> ws, line)) cout << line << endl;
+		file.close();
 }
 
 void stringifyArgs(char** argv, int argc, vector<string>& args){
@@ -50,7 +55,7 @@ bool executeAbbrCommand(char c){
 						system("pwd");
 						return true;
 				case 'h':
-						printUsage();
+						//printUsage();
 						return true;
 				case 'm':
 						loopMode();
@@ -72,7 +77,7 @@ LoopFlag excuteLoop(vector<string> tokens){
 		auto length = tokens.size();
 		if (length == 1){
 				if (tokens[0] == "help" || tokens[0] == "h"){
-						printUsage();
+						printFile("./doc/usage.txt");
 						return LF_SUCCESS;
 				} else if (tokens[0] == "exit" || tokens[0] == "ex"){
 						return LoopFlag::LF_EXIT;
@@ -80,7 +85,7 @@ LoopFlag excuteLoop(vector<string> tokens){
 		} else if (length == 2){
 				if (tokens[0] == "t"){
 						if (tokens[1] == "-l"){
-								printTmuxWorkspaces();
+								printFile("./doc/workspaces.txt");
 								return LF_SUCCESS;
 						}
 						else if (tokens[1] == "a"){

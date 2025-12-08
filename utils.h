@@ -11,8 +11,9 @@ enum LoopFlag {
 };
 
 
-void printUsage();
-void printTmuxWorkspaces();
+// void printUsage();
+// void printTmuxWorkspaces();
+void printFile();
 void stringifyArgs(char** argv, int argc, vector<string>& args);
 bool isWhiteSpace(char a);
 void stringSplit(string target, vector<string>& output);

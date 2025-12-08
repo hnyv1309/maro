@@ -13,7 +13,8 @@ int main(int argc, char** argv){
 		stringifyArgs(argv, argc, args);
 
 		if (argc == 1) {
-				printUsage(); return 0;
+				// printUsage(); 
+				return 0;
 		} else if (argc == 2){
 				if (args[1] == "-m"){
 						loopMode();
