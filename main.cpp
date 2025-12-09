@@ -1,7 +1,5 @@
 #include"utils.h"
 #include<iostream>
-#include<cstdlib>
-#include<fstream>
 #include<string>
 #include<vector>
 using namespace std;
@@ -13,7 +11,7 @@ int main(int argc, char** argv){
 		stringifyArgs(argv, argc, args);
 
 		if (argc == 1) {
-				// printUsage(); 
+				printFile(USAGE_FILE_PATH);
 				return 0;
 		} else if (argc == 2){
 				if (args[1] == "-m"){

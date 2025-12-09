@@ -1,23 +1,23 @@
 #pragma once
 #include<vector>
 #include<string>
+#include<cstdint>
 
-using namespace std;
+inline constexpr const char* USAGE_FILE_PATH = "./doc/usage.txt";
+inline constexpr const char* WORKSPACE_FILE_PATH = "./doc/workspaces.txt";
 
-enum LoopFlag {
-		LF_UNDEFINED,
-		LF_EXIT,
-		LF_SUCCESS
+enum class LoopFlag : uint8_t {
+		UNDEFINED,
+		EXIT,
+		SUCCESS
 };
 
 
-// void printUsage();
-// void printTmuxWorkspaces();
-void printFile();
-void stringifyArgs(char** argv, int argc, vector<string>& args);
-bool isWhiteSpace(char a);
-void stringSplit(string target, vector<string>& output);
+void printFile(const char* fileName);
+void stringifyArgs(char** argv, int argc, std::vector<std::string>& args);
+bool isWhiteSpace(char c);
+void stringSplit(const std::string &target, std::vector<std::string>& output);
 bool executeAbbrCommand(char c);
-LoopFlag excuteLoop(vector<string> tokens);
-void executeAbbrCommands(string commands);
+LoopFlag executeLoop(const std::vector<std::string> &tokens);
+void executeAbbrCommands(std::string commands);
 void loopMode();
